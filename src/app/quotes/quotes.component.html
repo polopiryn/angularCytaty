@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col s12">
+    <ng-container *ngIf="!showFlag">
+      <div class="editQuote card teal accent-4 hoverable" *appDelayElement=400>
+        <div class="card-content white-text " >
+          <app-button customClasses="right-align btn-floating green apply-button"  (clickButton)="update(editQuotation)">
+            <i class="material-icons">done</i>
+          </app-button>
+
+            <h5 >Treść cytatu</h5>
+            <input class="input-field white-text" type="text" [(ngModel)]="editQuotation.sentence">
+            <h5 >Autor</h5>
+            <input class="input-field white-text" type="text" [(ngModel)]="editQuotation.author">
+            <h5 >Głosy</h5>
+            <input class="input-field white-text" type="number" [(ngModel)]="editQuotation.votes">
+        </div>
+      </div>
+    </ng-container>
+
+    <div class="card teal hoverable quote quotes" [class.drawer]="showFlag" *ngFor="let quotation of quotes; let odd = odd" [ngClass]="odd ? 'accent-4' : 'accent-5'">
+      <div class="card-content white-text " >
+        <app-button customClasses="right-align btn-floating orange edit-button" *appDelayElement=400 (clickButton)="edit(quotation)">
+          <i class="material-icons ">edit</i>
+        </app-button>
+        <app-button customClasses="right-align btn-floating red remove-button" *appDelayElement=600 (clickButton)="remove(quotation)">
+          <i class="material-icons ">delete</i>
+        </app-button>
+
+        <span class="card-title">
+          {{quotation.sentence |QuotePipe}}
+        </span>
+          {{quotation.author |AutorPipe}}
+      </div>
+      <div class="card-action right-align">
+        <span class="btn teal left white-text">{{quotation.votes}}</span>
+        <app-vote-buttons-component [votes]="quotation.votes" (exportVote)="addVote(quotation,$event)"></app-vote-buttons-component>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

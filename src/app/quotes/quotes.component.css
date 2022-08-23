@@ -1,0 +1,23 @@
+.quote{
+  margin-bottom: 80px;;
+}
+
+.drawer {
+  transform: translateX(0) !important;
+}
+
+.quotes {
+  transition: 0.5s ease-in-out;
+  transform: translateX(-200%);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
